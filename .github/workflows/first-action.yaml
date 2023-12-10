@@ -9,6 +9,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Using JavaScript Action
-              uses: action/hello-world-javascript-action@main
+              uses: actions/hello-world-javascript-action@main
               with:
                 who-to-greet: "$GITHUB_ACTOR"
