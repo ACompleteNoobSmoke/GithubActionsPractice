@@ -18,3 +18,17 @@ jobs:
               run: echo "::warning title:Warning title, file=app.js, line=2, endLine=3, col=5, endColumn=7::Missing Semicolon"
             - name: Setting a notice message with params
               run: echo "::notice title:Notice title, file=app.js, line=2, endLine=3, col=5, endColumn=7::Missing Semicolon"
+
+    testing-group-workflow-commands:
+        name: Testing Group Workflow Commands
+        runs-on: ubuntu-latest
+        steps:
+            - name: Group of logs
+              run: |
+                echo "::group::My Group Title"
+                echo "Inside Group"
+                ehco "::endgroup::"
+            - name: Masking a value
+              run: echo "::add-mask::Secret String"
+            - name: Echo A Secret
+              run: echo "Secret String"
