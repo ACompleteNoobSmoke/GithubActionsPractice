@@ -1,0 +1,14 @@
+name: First Action Workflow
+
+on:
+  push:
+
+jobs:
+    using-javascript-action:
+        name: Using Javascript Action
+        runs-on: ubuntu-latest
+        steps:
+            - name: Using JavaScript Action
+              uses: action/hello-world-javascript-action@main
+              with:
+                who-to-greet: "$GITHUB_ACTOR"
