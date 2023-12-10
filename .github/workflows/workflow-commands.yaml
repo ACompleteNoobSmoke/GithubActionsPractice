@@ -28,7 +28,7 @@ jobs:
               run: |
                 echo "::group::My Group Title"
                 echo "Inside Group"
-                ehco "::endgroup::"
+                echo "::endgroup::"
             - name: Masking a value
               run: echo "::add-mask::Secret String"
             - name: Echo A Secret
