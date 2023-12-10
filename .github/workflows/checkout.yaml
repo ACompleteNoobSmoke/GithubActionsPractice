@@ -19,13 +19,13 @@ jobs:
       - name: List Files After
         run: ls -a
 
-      checking-out-repo-action:
-        name: Checking Out Repository
-        runs-on: ubuntu-latest
-        steps:
-          - name: List Files Before
-            run: ls -a
-          - name: Checkout
-            uses: actions/checkout@v4
-          - name: List Files After
-            run: ls -a
+  checking-out-repo-action:
+      name: Checking Out Repository
+      runs-on: ubuntu-latest
+      steps:
+        - name: List Files Before
+          run: ls -a
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: List Files After
+          run: ls -a
