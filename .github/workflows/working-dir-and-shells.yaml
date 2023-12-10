@@ -22,7 +22,7 @@ jobs:
         steps:
             - name: Display Working Directory & List Files (Windows)
               run: |
-                pwd
+                ${PWD}
                 ls -a
                 echo $GITHUB_SHA
                 echo $GITHUB_REPOSITORY
