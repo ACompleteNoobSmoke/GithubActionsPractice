@@ -11,4 +11,4 @@ jobs:
             - name: Using JavaScript Action
               uses: actions/hello-world-javascript-action@main
               with:
-                who-to-greet: "$GITHUB_ACTOR"
+                who-to-greet: $GITHUB_ACTOR
