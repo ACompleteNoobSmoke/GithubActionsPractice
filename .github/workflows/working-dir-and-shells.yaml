@@ -23,7 +23,7 @@ jobs:
             - name: Display Working Directory & List Files (Windows)
               run: |
                 ${PWD}
-                ls -a
-                echo $GITHUB_SHA
-                echo $GITHUB_REPOSITORY
-                echo $GITHUB_WORKSPACE
+                dir
+                echo $env:GITHUB_SHA
+                echo $env:GITHUB_REPOSITORY
+                echo $env:GITHUB_WORKSPACE
