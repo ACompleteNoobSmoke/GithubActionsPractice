@@ -22,6 +22,7 @@ jobs:
     testing-group-workflow-commands:
         name: Testing Group Workflow Commands
         runs-on: ubuntu-latest
+        needs: testing-workflow-commands
         steps:
             - name: Group of logs
               run: |
