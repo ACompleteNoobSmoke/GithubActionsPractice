@@ -1,0 +1,15 @@
+name: Manually Tiggered Workflow
+
+on:
+    workflow_dispatch:
+
+jobs:
+    log-info:
+        name: Log  Info
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print info
+              run: |
+                echo $GITHUB_REF
+                echo $GITHUB_SHA
+                echo $GITHUB_ACTOR
