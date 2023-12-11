@@ -2,6 +2,16 @@ name: Manually Tiggered Workflow
 
 on:
     workflow_dispatch:
+        inputs:
+            string: 
+                description: A String input
+                type: string
+                required: true
+                default: "BASED"
+            environment:
+                description: "Environment"
+                type: environment
+                required: true
 
 jobs:
     log-info:
@@ -13,3 +23,7 @@ jobs:
                 echo $GITHUB_REF
                 echo $GITHUB_SHA
                 echo $GITHUB_ACTOR
+            - name: Print input
+              run: |
+                echo "String Input: ${{ inputs.string }}"
+                echo "Environment Input: ${{ inputs.environment }}"
