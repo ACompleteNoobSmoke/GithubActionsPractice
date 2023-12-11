@@ -1,0 +1,17 @@
+name: Push Event Workflow
+
+on:
+  push:
+    branches:
+        - main
+
+
+jobs:
+    checkout-test:
+        name: Checkout Test (main)
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run Echo Commans
+              run: |
+                echo $GITHUB_SHA
+                echo $GITHUB_REF
