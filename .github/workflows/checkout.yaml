@@ -20,7 +20,7 @@ jobs:
         run: ls -a
 
   checking-out-repo-action:
-      name: Checking Out Repository
+      name: Checking Out Repository (Action)
       runs-on: ubuntu-latest
       steps:
         - name: List Files Before
