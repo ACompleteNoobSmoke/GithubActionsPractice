@@ -8,6 +8,7 @@ jobs:
     using-expressions-and-contexts:
         name: Using Expressions And Contexts
         runs-on: ubuntu-latest
+        if: github.event_name == 'push'
         steps:
             - name: Expressions
               id: expressions
