@@ -1,0 +1,37 @@
+name: Status Check Functions
+
+on:
+  push:
+
+run-name: 'Status Check By ${{github.actor}}'
+
+jobs:
+    first-job:
+        name: First Job
+        runs-on: ubuntu-latest
+        steps:
+            - name: Step 1
+              run: sleep 20
+            - name: Runs on Failure
+              if: failure()
+              run: echo 'Runs only on failure'
+            - name: Runs on Success
+              # If statement not needed since 'success()' is default behaviour
+              if: success()
+              run: echo 'Runs on Success'
+            - name: Always Runs
+              if: always()
+              run: echo 'Always Runs'
+            - name: Runs When Cancelled
+              if: cancelled()
+              run: echo 'Runs on Cancelled'
+
+
+    second-job:
+        name: Second Job
+        runs-on: ubuntu-latest
+        needs: first-job
+        if: failure()
+        steps:
+            - name: Echo Second Job String
+              run: echo 'Second Job'
