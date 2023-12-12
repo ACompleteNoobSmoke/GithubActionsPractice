@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Step 1
-              run: sleep 20
+              ru: sleep 20
             - name: Runs on Failure
               if: failure()
               run: echo 'Runs only on failure'
