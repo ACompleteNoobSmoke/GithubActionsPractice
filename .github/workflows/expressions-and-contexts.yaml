@@ -31,3 +31,12 @@ jobs:
               run: echo '${{ toJson(steps) }}'
             - name: Dump Runner
               run: echo '${{ toJson(runner) }}'
+    
+    runs-on-issues-and-prs:
+        name: Runs On Issues & PRs
+        runs-on: ubuntu-latest
+        if: contains(fromJson('["issues", "pull_request"]'), github.event_name)
+        steps:
+            - name: Run Only If Issue Has A Bug Label
+              if: contains(github.event.issue.labels.*.name, 'bug')
+              run: echo ${{ join(github.event.inputs.labels.*.name, ', ') }}
