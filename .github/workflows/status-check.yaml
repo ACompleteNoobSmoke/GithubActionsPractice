@@ -11,11 +11,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Fail Step
+              id: fail_step
               run: exit 1
             - name: Step 1
               run: sleep 20
             - name: Runs on Failure
-              if: failure()
+              if: failure() && steps.fail_step.conclusion == 'failure'
               run: echo 'Runs only on failure'
             - name: Runs on Success
               # If statement not needed since 'success()' is default behaviour
