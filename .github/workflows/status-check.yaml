@@ -10,8 +10,10 @@ jobs:
         name: First Job
         runs-on: ubuntu-latest
         steps:
+            - name: Fail Step
+              run: exit 1
             - name: Step 1
-              ru: sleep 20
+              run: sleep 20
             - name: Runs on Failure
               if: failure()
               run: echo 'Runs only on failure'
