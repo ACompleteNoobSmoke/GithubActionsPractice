@@ -39,4 +39,4 @@ jobs:
         steps:
             - name: Run Only If Issue Has A Bug Label
               if: contains(github.event.issue.labels.*.name, 'bug')
-              run: echo ${{ join(github.event.inputs.labels.*.name, ', ') }}
+              run: echo ${{ join(github.event.issue.labels.*.name, ', ') }}
