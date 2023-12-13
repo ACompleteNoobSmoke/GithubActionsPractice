@@ -28,7 +28,7 @@ jobs:
                 echo "CUSTOM_OUTPUT=ACompleteMedoicreSmoke" >> "$GITHUB_OUTPUT"
             - name: Multiline ENV Var
               run: |
-                DELIMITER=1234
+                DELIMITER=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
                 echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
                 echo "WHO IS ON FIRST BASE:" >> "$GITHUB_ENV"
                 curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
