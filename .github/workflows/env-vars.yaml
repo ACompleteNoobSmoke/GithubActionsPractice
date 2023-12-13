@@ -8,6 +8,7 @@ jobs:
     env-vars-and-context:
         name: Environment Variables & Context
         runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
         steps:
             - name: Log ENV VAR
               run: echo $GITHUB_REF
