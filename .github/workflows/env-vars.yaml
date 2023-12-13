@@ -39,3 +39,6 @@ jobs:
                 echo $NEW_ENV_VAR
                 echo $POSITIVE_STATEMENT_ENV
                 echo ${{ steps.env_var.outputs.CUSTOM_OUTPUT }}
+            - name: Log Custom Output
+              if: steps.env_var.outputs.CUSTOM_OUTPUT == 'ACompleteNoobSmoke'
+              run: echo "Who is the Masta.......SHONUFF!"
