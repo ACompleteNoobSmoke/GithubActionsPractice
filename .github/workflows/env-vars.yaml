@@ -20,10 +20,13 @@ jobs:
             - name: Log Context
               run: echo '${{ github.ref }}'
             - name: Set Env Var
+              id: env_var
               run: |
                 echo "NEW_ENV_VAR=$(date)" >> "$GITHUB_ENV"
                 echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
                 echo "POSITIVE_STATEMENT_ENV='Uyi you will be a fantastic programmer'" >> "$GITHUB_ENV"
+                echo "CUSTOM_OUTPUT=ACompleteNoobSmoke" >> "$GITHUB_OUTPUT"
+
             - name: Log Custom ENV Vars
               env:
                 STEP_LEVEL_ENV: Available to only this step
@@ -35,3 +38,4 @@ jobs:
                 echo $JOB_LEVEL_ENV
                 echo $NEW_ENV_VAR
                 echo $POSITIVE_STATEMENT_ENV
+                echo ${{ steps.env_var.outputs.CUSTOM_OUTPUT }}
