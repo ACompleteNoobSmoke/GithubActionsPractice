@@ -26,7 +26,14 @@ jobs:
                 echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
                 echo "POSITIVE_STATEMENT_ENV='Uyi you will be a fantastic programmer'" >> "$GITHUB_ENV"
                 echo "CUSTOM_OUTPUT=ACompleteMedoicreSmoke" >> "$GITHUB_OUTPUT"
-
+            - name: Multiline ENV Var
+              run: |
+                DELIMITER=1234
+                echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
+                echo "WHO IS ON FIRST BASE:" >> "$GITHUB_ENV"
+                curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
+                echo "" >> "GITHUB_ENV"
+                echo "$DELIMITER" >> "$GITHUB_ENV"
             - name: Log Custom ENV Vars
               env:
                 STEP_LEVEL_ENV: Available to only this step
@@ -39,6 +46,7 @@ jobs:
                 echo $NEW_ENV_VAR
                 echo $POSITIVE_STATEMENT_ENV
                 echo ${{ steps.env_var.outputs.CUSTOM_OUTPUT }}
+                echo $RANDOM_JOKE
             - name: Log Custom Output
               if: steps.env_var.outputs.CUSTOM_OUTPUT == 'ACompleteNoobSmoke'
               run: echo "Who is the Masta.......SHONUFF!"
