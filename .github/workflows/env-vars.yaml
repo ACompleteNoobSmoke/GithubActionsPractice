@@ -3,14 +3,50 @@ name: Environment Variables
 on:
   push:
 
+env:
+  WF_LEVEL_ENV: Available to all jobs
+
 
 jobs:
     env-vars-and-context:
         name: Environment Variables & Context
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/main'
+        env:
+            JOB_LEVEL_ENV: Available to all steps in env-vars-and-context job
         steps:
             - name: Log ENV VAR
               run: echo $GITHUB_REF
             - name: Log Context
               run: echo '${{ github.ref }}'
+            - name: Set Env Var
+              id: env_var
+              run: |
+                echo "NEW_ENV_VAR=$(date)" >> "$GITHUB_ENV"
+                echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
+                echo "POSITIVE_STATEMENT_ENV='Uyi you will be a fantastic programmer'" >> "$GITHUB_ENV"
+                echo "CUSTOM_OUTPUT=ACompleteMedoicreSmoke" >> "$GITHUB_OUTPUT"
+            - name: Multiline ENV Var
+              run: |
+                DELIMITER=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+                echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
+                echo "WHO IS ON FIRST BASE:" >> "$GITHUB_ENV"
+                curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
+                echo "" >> "$GITHUB_ENV"
+                echo "$DELIMITER" >> "$GITHUB_ENV"
+            - name: Log Custom ENV Vars
+              env:
+                STEP_LEVEL_ENV: Available to only this step
+                WF_LEVEL_ENV: Overridden in step
+              run: |
+                echo '${{ env.STEP_LEVEL_ENV }}'
+                echo $STEP_LEVEL_ENV
+                echo $WF_LEVEL_ENV
+                echo $JOB_LEVEL_ENV
+                echo $NEW_ENV_VAR
+                echo $POSITIVE_STATEMENT_ENV
+                echo ${{ steps.env_var.outputs.CUSTOM_OUTPUT }}
+                echo $RANDOM_JOKE
+            - name: Log Custom Output
+              if: steps.env_var.outputs.CUSTOM_OUTPUT == 'ACompleteNoobSmoke'
+              run: echo "Who is the Masta.......SHONUFF!"
