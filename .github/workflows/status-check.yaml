@@ -15,7 +15,8 @@ jobs:
               id: fail_step
               run: exit 1
             - name: Step 1
-              run: sleep 20
+              run: sleep 90
+              timeout-minutes: 1
             - name: Runs on Fail Step Failure
               if: failure() && steps.fail_step.conclusion == 'failure'
               run: echo 'Runs only on failure'
