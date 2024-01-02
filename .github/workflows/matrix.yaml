@@ -1,0 +1,23 @@
+name: Matrix
+
+run-name: "The Matrix By ${{github.actor}}"
+
+on:
+    push:
+
+jobs:
+    node-matrix:
+        name: Node Matrix
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [14, 15, 16]
+        steps:
+            - name: Node Version
+              run: node -v
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{ matrix.node-version}}
+            - name: Node Version
+              run: node -v
