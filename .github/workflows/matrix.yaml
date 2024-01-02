@@ -8,7 +8,7 @@ on:
 jobs:
     node-matrix:
         name: Node Matrix 
-        continue-on-error: false
+        continue-on-error: ${{ matrix.experimental == true }}
         strategy:
             matrix:
                 os: [ubuntu-latest, windows-latest]
