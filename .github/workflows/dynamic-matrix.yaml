@@ -45,8 +45,8 @@ jobs:
           name: Node Matrix
           strategy:
             matrix:
-                os: ${{ needs.prepare-matrix.outputs.matrix-array['os']}}
-                node-version: ${{ needs.prepare-matrix.outputs.matrix-array['node-version']}}
+                os: ${{ fromJson(needs.prepare-matrix.outputs.matrix-array).os }}
+                node-version: ${{ fromJson(needs.prepare-matrix.outputs.matrix-array).node-version }}
           runs-on: ${{matrix.os}}
           steps:
             - name: Print Node Version
