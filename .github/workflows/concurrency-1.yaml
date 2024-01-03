@@ -10,6 +10,7 @@ on:
                 type: environment
                 required: true
 
+concurrency: concurrency-1
 jobs:
     sleep:
         name: Sleep
