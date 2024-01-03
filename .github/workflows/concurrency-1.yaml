@@ -10,7 +10,9 @@ on:
                 type: environment
                 required: true
 
-concurrency: concurrency-1
+concurrency: 
+    group: concurrency-1
+    cancel-in-progress: true
 jobs:
     sleep:
         name: Sleep
