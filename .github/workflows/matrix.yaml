@@ -1,0 +1,45 @@
+name: Matrix
+
+run-name: "The Matrix By ${{github.actor}}"
+
+on:
+    push:
+
+jobs:
+    node-matrix:
+        name: Node Matrix 
+        continue-on-error: ${{ matrix.experimental == true }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+                node-version: [14, 15, 16]
+                include:
+                    - os: ubuntu-latest
+                      is-ubuntu: true
+                    - os: macos-latest
+                      node-version: 15
+                    - experimental: false
+                    - os: ubuntu-latest
+                      node-version: 16
+                      experimental: true
+                    - os: ubuntu-latest
+                      node-version: 17
+                exclude:
+                    - os: ubuntu-latest
+                      node-version: 14
+            fail-fast: true
+        runs-on: ${{ matrix.os }}        
+        steps:
+            - name: Check Experimental
+              if: matrix.experimental == true
+              run: exit 1
+            - name: Node Version
+              run: node -v
+            - name: Display Matrix
+              run: echo '${{ toJson(matrix) }}'
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{ matrix.node-version}}
+            - name: Node Version
+              run: node -v

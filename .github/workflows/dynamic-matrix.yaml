@@ -1,0 +1,50 @@
+name: Dynamic Matrix
+
+run-name: "Dynamic Matrix By ${{github.actor}}"
+
+on:
+    workflow_dispatch:
+        inputs:
+            os:
+                description: Operating Systems
+                default: "windows-latest, ubuntu-latest"
+                type: string
+            node-version:
+                description: Node Version
+                default: "15, 16, 17"
+                type: string
+
+
+jobs:
+    prepare-matrix:
+        name: Prepare Matrix
+        runs-on: ubuntu-latest
+        steps:
+            - name: Set Output
+              id: step-1
+              run: echo "step-output=value" >> $GITHUB_OUTPUT
+            - name: Set Output 2
+              id: step-2
+              run: echo "step-output=value 2" >> $GITHUB_OUTPUT
+            - name: Print Outputs
+              run: |
+                echo '${{ steps.step-1.outputs.step-output }}'
+                echo '${{ steps.step-2.outputs.step-output }}'
+    node-matrix:
+          name: Node Matrix
+          strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+                node-version: [15, 16, 17]
+          runs-on: ${{matrix.os}}
+          steps:
+            - name: Print Node Version
+              run: node -v
+            - name: Print Matrix
+              run: echo '${{ toJson(matrix) }}'
+            - name: Setup Node Version
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{ matrix.node-version }}
+            - name: Print Node Version
+              run: node -v
