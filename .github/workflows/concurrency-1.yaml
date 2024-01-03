@@ -1,0 +1,19 @@
+name: Concurrency 1
+
+run-name: Concurrency 1
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: "Environment"
+                type: environment
+                required: true
+
+jobs:
+    sleep:
+        name: Sleep
+        runs-on: ubuntu-latest
+        steps:
+            - name: Sleep
+              run: sleep 30
