@@ -7,11 +7,11 @@ on:
         inputs:
             os:
                 description: Operating Systems
-                default: "windows-latest, ubuntu-latest"
+                default: "windows-latest,ubuntu-latest"
                 type: string
             node-version:
                 description: Node Version
-                default: "15, 16, 17"
+                default: "15,16,17"
                 type: string
 
 
@@ -19,6 +19,8 @@ jobs:
     prepare-matrix:
         name: Prepare Matrix
         runs-on: ubuntu-latest
+        outputs: 
+            matrix-array: ${{ steps.convertedArray.outputs.result }}
         steps:
             - name: Convert String to Array
               id: convertedArray
@@ -39,11 +41,12 @@ jobs:
                 echo '${{ steps.step-1.outputs.step-output }}'
                 echo '${{ steps.step-2.outputs.step-output }}'
     node-matrix:
+          needs: prepare-matrix
           name: Node Matrix
           strategy:
             matrix:
-                os: [ubuntu-latest, windows-latest]
-                node-version: [15, 16, 17]
+                os: ${{ needs.prepare-matrix.outputs.matrix-array['os']}}
+                node-version: ${{ needs.prepare-matrix.outputs.matrix-array['node-version']}}
           runs-on: ${{matrix.os}}
           steps:
             - name: Print Node Version
