@@ -20,6 +20,14 @@ jobs:
         name: Prepare Matrix
         runs-on: ubuntu-latest
         steps:
+            - name: Convert String to Array
+              id: convertedArray
+              uses: actions/github-script@v6
+              with:
+                script: "return {os: context.payload.inputs['os'].split(','), node-version: context.payload.inputs[node-version].split(',')}"
+                result-encoding: json
+            - name: Print Converted Array
+              run: echo '${{steps.convertedArray.outputs.result}}'
             - name: Set Output
               id: step-1
               run: echo "step-output=value" >> $GITHUB_OUTPUT
