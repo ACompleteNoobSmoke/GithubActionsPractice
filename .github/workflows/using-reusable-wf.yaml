@@ -14,7 +14,7 @@ on:
 jobs:
     calling-reusable-wf:
         name: Calling Reusable Workflow
-        uses: ${{github.actor}}/GithubActions/.github/workflows/reusable-wf.yaml@main
+        uses: "ACompleteNoobSmoke/GithubActions/.github/workflows/reusable-wf.yaml@main"
         with:
             name: ${{ inputs.name }}
         secrets:
