@@ -22,12 +22,12 @@ jobs:
 
     calling-reusable-wf-2:
         name: Calling Reusable Workflow (Same Repository)
+        uses: ./.github/workflows/reuse-wf.yaml
+
+    print-output:
+        name: Print output
+        needs: calling-reusable-wf-2
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout Code
-              uses: actions/checkout@v4
-            - name: Calling Reusable Workflow
-              id: dateOutput
-              uses: ./.github/workflows/reuse-wf.yaml
             - name: Print Output
-              run: echo '${{steps.dateOutput.outputs.date}}'
+              run: ${{ needs.calling-reusable-wf-2.outputs.date }}
