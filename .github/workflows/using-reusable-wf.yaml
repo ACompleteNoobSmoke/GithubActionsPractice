@@ -30,4 +30,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Print Output
-              run: ${{ needs.calling-reusable-wf-2.outputs.date }}
+              run: echo ${{ needs.calling-reusable-wf-2.outputs.date }}
