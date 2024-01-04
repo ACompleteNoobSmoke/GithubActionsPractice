@@ -24,6 +24,8 @@ jobs:
         name: Calling Reusable Workflow (Same Repository)
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
             - name: Calling Reusable Workflow
               id: dateOutput
               uses: ./.github/workflows/reusable-workflow.yaml
