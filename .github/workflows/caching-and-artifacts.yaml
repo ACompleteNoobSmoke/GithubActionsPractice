@@ -12,6 +12,14 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
+            - name: Cache Node Modules
+              id:   cache-dependencies
+              uses: actions/cache@v3
+              with:
+                path: ~/.npm
+                key: "npm-cache"
+            - name: Display Cache Output
+              run: echo '${{ toJson(steps.cache-dependencies.outputs)}}'
             - name: Install Dependencies
               run: npm install
             - name: Use Axios
