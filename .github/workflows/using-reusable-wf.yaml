@@ -23,6 +23,7 @@ jobs:
     calling-reusable-wf-2:
         name: Calling Reusable Workflow (Same Repository)
         uses: ./.github/workflows/reuse-wf.yaml
+        secrets: inherit
 
     print-output:
         name: Print output

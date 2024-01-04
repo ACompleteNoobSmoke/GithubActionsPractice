@@ -10,6 +10,14 @@ on:
                 value: ${{ jobs.generate-output.outputs.date }}
 
 jobs:
+    calling-reusable-wf:
+        name: Calling Reusable Workflow
+        uses: "ACompleteNoobSmoke/GithubActions/.github/workflows/reusable-wf.yaml@main"
+        with:
+            name: 'Jackie Chan'
+        secrets:
+            access-token: random_token
+
     generate-output:
         name: Generate Output
         runs-on: ubuntu-latest
