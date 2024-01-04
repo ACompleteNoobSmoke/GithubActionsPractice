@@ -28,6 +28,6 @@ jobs:
               uses: actions/checkout@v4
             - name: Calling Reusable Workflow
               id: dateOutput
-              uses: ./.github/workflows/reusable-workflow.yaml
+              uses: ACompleteNoobSmoke/GithubActionsPractice/.github/workflows/reusable-workflow.yaml@main
             - name: Print Output
               run: echo '${{steps.dateOutput.outputs.date}}'
