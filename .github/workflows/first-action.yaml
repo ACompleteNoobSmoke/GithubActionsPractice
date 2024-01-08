@@ -4,17 +4,17 @@ on:
   push:
 
 jobs:
-    using-javascript-action:
-        name: Using Javascript Action
-        runs-on: ubuntu-latest
-        steps:
-            - name: Using JavaScript Action
-              id: greet
-              uses: actions/hello-world-javascript-action@main
-              with:
-                who-to-greet: Osaretin Omofonmwan
-            - name: Log Greeting Time
-              run: echo "${{ steps.greet.outputs.time}}"
+    # using-javascript-action:
+    #     # name: Using Javascript Action
+    #     # runs-on: ubuntu-latest
+    #     # steps:
+    #     #     - name: Using JavaScript Action
+    #     #       id: greet
+    #     #       uses: actions/hello-world-javascript-action@main
+    #     #       with:
+    #     #         who-to-greet: Osaretin Omofonmwan
+    #     #     - name: Log Greeting Time
+    #     #       run: echo "${{ steps.greet.outputs.time}}"
     using-custom-action:
       name: Using Custom Action
       runs-on: ubuntu-latest
