@@ -15,3 +15,18 @@ jobs:
                 who-to-greet: Osaretin Omofonmwan
             - name: Log Greeting Time
               run: echo "${{ steps.greet.outputs.time}}"
+    using-custom-action:
+      name: Using Custom Action
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v4
+        - name: Using Custom Action
+          id:  custom
+          uses: ./.github/actions/hello
+          with:
+            who_to_greet: Adedayo Uwensuyi
+        - name: Log Greeting Time
+          run: echo "${{ steps.custom.outputs.time }}"
+        - name: Log Greeting Time (ENV)
+          run: echo "$HELLO_TIME"

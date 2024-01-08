@@ -44,10 +44,12 @@ jobs:
                 args: text.txt
             - name: Checkout Code
               uses: actions/checkout@v4
-            - name: Run A Bash Script
-              uses: docker://node:21-alpine3.18
-              with:
-                entrypoint: ./script.sh
-                args: "Some String"
+            - name: Send A Slack Message
+              uses: docker://technosophos/slack-notify
+              env:
+                SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+                SLACK_TITLE: From Github Actions
+                SLACK_MESSAGE: "Actor: ${{github.actor}}, Event: ${{github.event_name}}"
+                SLACK_COLOR: "#723fc4"
 
 
