@@ -21,6 +21,8 @@ jobs:
       steps:
         - name: Checkout Code
           uses: actions/checkout@v4
+        - name: Sleep
+          run: sleep 45
         - name: Using Custom Action
           id:  custom
           uses:  ./GithubActionsPractice/.github/actions/hello@main
