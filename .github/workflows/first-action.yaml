@@ -27,7 +27,7 @@ jobs:
           run: git pull origin main
         - name: Using Custom Action
           id:  custom
-          uses: ./.github/actions/hello
+          uses: ./.github/actions/hello/action.yaml
           with:
             who_to_greet: Adedayo Uwensuyi
         - name: Log Greeting Time
