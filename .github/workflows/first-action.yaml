@@ -20,9 +20,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Code
-          uses: actions/checkout@v4
-        - name: Sleep
-          run: sleep 45
+          uses: actions/checkout@v3
         - name: Using Custom Action
           id:  custom
           uses:  ./GithubActionsPractice/.github/actions/hello@main
