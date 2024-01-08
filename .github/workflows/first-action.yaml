@@ -21,11 +21,13 @@ jobs:
       steps:
         - name: Checkout Code
           uses: actions/checkout@v4
+          with:
+            repository: ${{github.repository}}
         - name: Pull Changes
           run: git pull origin main
         - name: Using Custom Action
           id:  custom
-          uses: ./.github/actions/hello/
+          uses: ./.github/actions/hello
           with:
             who_to_greet: Adedayo Uwensuyi
         - name: Log Greeting Time
