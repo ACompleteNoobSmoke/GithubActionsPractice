@@ -23,7 +23,7 @@ jobs:
           uses: actions/checkout@main
         - name: Using Custom Action
           id:  custom
-          uses: ACompleteNoobSmoke/GithubActionsPractice/.github/actions/hello@main
+          uses: ACompleteNoobSmoke/GithubActionsPractice/.github/actions/hello/action.yaml@main
           with:
             who_to_greet: Adedayo Uwensuyi
         - name: Log Greeting Time
