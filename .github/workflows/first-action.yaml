@@ -19,10 +19,10 @@ jobs:
       name: Using Custom Action
       runs-on: ubuntu-latest
       steps:
-        - name: Checkout Code
-          uses: actions/checkout@v4
-        - name: Pull Changes
-          run: git pull origin main
+        # - name: Checkout Code
+        #   uses: actions/checkout@v4
+        # - name: Pull Changes
+        #   run: git pull origin main
         - name: Using Custom Action
           id:  custom
           uses: ./.github/custom@main
